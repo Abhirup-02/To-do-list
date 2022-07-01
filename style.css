@@ -51,7 +51,18 @@ form{
     font-size: 1.3rem;
     padding: 1rem 1rem;
     cursor: pointer;
+    /* transition: 400ms ease-in; */
+    animation: animate 1.2s linear forwards;
 }
+@keyframes animate{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
 .todos li.completed{
     color: #e5e5e5;
     text-decoration: line-through 1.7px #e5e5e5 ;
