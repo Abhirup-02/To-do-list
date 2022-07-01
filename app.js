@@ -1,9 +1,17 @@
 const form = document.getElementById('form')
 const input = document.getElementById('input')
 const todos = document.getElementById('todos')
+
 form.addEventListener('submit', (e) => { 
     e.preventDefault()
 
+    addTodo()
+})
+
+    
+
+
+function addTodo() {
     const todoText = input.value
 
     if (todoText) {
@@ -14,15 +22,17 @@ form.addEventListener('submit', (e) => {
             todoEl.classList.toggle('completed')
         })
 
-        todoEl.addEventListener('contextmenu', (event) => { 
-            event.preventDefault();
+        todoEl.addEventListener('contextmenu', (e) => {
+            e.preventDefault()
+
             todoEl.remove()
         })
+
+        
 
 
         todos.appendChild(todoEl)
 
         input.value = ''
     }
-
-})
+}
