@@ -45,13 +45,14 @@ form{
     list-style: none;
 }
 .todos li{
+    word-wrap: break-word;
+    word-break: keep-all; 
     font-family: 'Gentium Book Plus', serif;
     border-radius: 15px;
     border-top: 3px solid #e5e5e5;
     font-size: 1.3rem;
     padding: 1rem 1rem;
     cursor: pointer;
-    /* transition: 400ms ease-in; */
     animation: animate 1.2s linear forwards;
 }
 @keyframes animate{
