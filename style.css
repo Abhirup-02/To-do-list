@@ -46,6 +46,7 @@ form{
 }
 .todos li{
     word-wrap: break-word;
+    hyphens: auto;
     word-break: keep-all; 
     font-family: 'Gentium Book Plus', serif;
     border-radius: 15px;
