@@ -2,17 +2,21 @@ const form = document.getElementById('form')
 const input = document.getElementById('input')
 const todosUL = document.getElementById('todos')
 
-let pastTodos
+
+
 let todos = JSON.parse(localStorage.getItem('todos')).todos
+let pastTodos = []
+
 setInterval(() => {
     const initTodos = JSON.parse(localStorage.getItem('todos')) || []
     const todos = initTodos.todos || []
-    pastTodos = todos.filter(todo => todo.time < new Date().getMinutes())
-    console.log(pastTodos)
+    
+    if (todos.length > 0) {
+        pastTodos = pastTodos.concat(todos.filter(todo => parseInt(todo.time) + 5000 < parseInt(new Date().getTime())))
+        console.log(pastTodos)
+    }
     updatelocalStorage()
-
-}, 5000)
-
+}, 20000)
 
 
 if (todos) {
@@ -28,7 +32,6 @@ form.addEventListener('submit', (e) => {
 
 
 
-
 function addTodo(todo) {
 
     let todoText = input.value
@@ -41,7 +44,7 @@ function addTodo(todo) {
     if (todoText) {
 
         const todoEl = document.createElement('li')
-        todoEl.dataset.time = new Date().getMinutes()
+        todoEl.dataset.time = new Date().getTime()
 
         if (todo && todo.completed) {
             todoEl.classList.add('completed')
@@ -76,15 +79,33 @@ function addTodo(todo) {
 function updatelocalStorage() {
     const todosEl = document.querySelectorAll('li')
     const todos = []
-
     todosEl.forEach((todoEl) => {
-        todoEl.dataset.time >= new Date().getMinutes() &&
+        parseInt(todoEl.dataset.time) + 1000 >= parseInt(new Date().getTime()) &&
             todos.push({
                 text: todoEl.innerText,
                 completed: todoEl.classList.contains('completed'),
                 time: todoEl.dataset.time
-            }) 
+            })
+
     })
 
     localStorage.setItem('todos', JSON.stringify({ todos, pastTodos }))
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
